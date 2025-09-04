@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mobile Responsiveness -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Referrer Policy -->
+    <meta name="referrer" content="always">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Calculadora de inflación - Una herramienta simple para conocer el impacto de la inflación en tu dinero en Argentina. Ingresa valores y obtén resultados precisos al instante.">
+    <!-- SEO Meta Keywords -->
+    <meta name="keywords" content="inflación, calculadora, Argentina, dinero, economía, tasa de inflación">
+    <!-- Page Title -->
+    <title>Calculadora de Inflación Argentina.</title>
+    <!-- Canonical Tag -->
+    <link href="" rel="canonical" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #005f73, #0a9396, #94d2bd, #ee9b00, #ca6702);
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #003049;
+            text-shadow: 1px 1px 2px #fafafa;
+        }
+
+        /* Dropdown menu container above calculator */
+        .dropdown-container {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 2px solid #0077b6;
+            background: white;
+            color: #0077b6;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: border-color 0.3s ease;
+        }
+        select:hover, select:focus {
+            border-color: #023e8a;
+        }
+
+        /* Calculator styling */
+        .calculator {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0077b6;
+        }
+
+        input[type="number"] {
+            width: calc(50% - 20px);
+            padding: 10px;
+            margin: 10px 10px 20px 0;
+            font-size: 1rem;
+            border: 2px solid #0077b6;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus {
+            border-color: #023e8a;
+        }
+
+        button.calc-button {
+            background-color: #ee9b00;
+            border: none;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(238, 155, 0, 0.5);
+            transition: background-color 0.3s ease;
+        }
+        button.calc-button:hover {
+            background-color: #ca6702;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0077b6;
+        }
+
+        article {
+            max-width: 700px;
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        a.cta-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #005f73;
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 95, 115, 0.7);
+            transition: background-color 0.3s ease;
+        }
+        a.cta-link:hover {
+            background-color: #0a9396;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            input[type="number"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Inflación Argentina</h1>
+
+    <div class="dropdown-container">
+        <select id="pageSelector" aria-label="Seleccionar calculadora de inflación">
+            <option value="https://calculadorade-inflacion.com/index.html" selected>Calculadora de Inflación Argentina</option>
+            <option value="https://calculadorade-inflacion.com/calculadora-ipc-chile.html">Calculadora de la inflación de Chile</option>
+            <option value="https://calculadorade-inflacion.com/colombia.html">Calculadora de Inflación de Colombia</option>
+            <option value="https://calculadorade-inflacion.com/mexico.html">Calculadora de Inflación México</option>
+            <option value="https://calculadorade-inflacion.com/paraguay.html">Calculadora de la inflación Paraguay</option>
+            <option value="https://calculadorade-inflacion.com/peru.html">Calculadora de inflación de Perú</option>
+            <option value="https://calculadorade-inflacion.com/uruguay.html">Calculadora de inflación de Uruguay</option>
+            <option value="https://calculadorade-inflacion.com/united-state.html">US Inflation Calculator</option>
+        </select>
+    </div>
+
+    <div class="calculator" role="form" aria-label="Calculadora de inflación">
+        <label for="valorInicial">Valor inicial (en moneda local):</label>
+        <input type="number" id="valorInicial" aria-required="true" placeholder="Ejemplo: 10000" min="0" step="any">
+
+        <label for="inflacionPorcentaje">Tasa de inflación (%):</label>
+        <input type="number" id="inflacionPorcentaje" aria-required="true" placeholder="Ejemplo: 10" min="0" step="any">
+
+        <button class="calc-button" type="button" onclick="calcularInflacion()">Calcular</button>
+
+        <div class="result" id="resultado" aria-live="polite"></div>
+    </div>
+
+    <a href="https://calculadorade-inflacion.com/index.html" class="cta-link">Calculadora de Inflación Argentina</a>
+
+    <article>
+        <h2>Comprendiendo la inflación y su impacto</h2>
+        <p>La inflación es el aumento generalizado y sostenido de los precios de bienes y servicios en una economía durante un período de tiempo. Esto significa que, con el tiempo, el valor del dinero disminuye y se necesita más dinero para comprar los mismos productos.</p>
+        <p>Una calculadora de inflación es una herramienta esencial para entender cómo la inflación afecta el poder adquisitivo de las personas. Permite estimar el valor ajustado del dinero considerando la tasa de inflación.</p>
+        <p>Usando esta calculadora, puedes ingresar un valor inicial y la tasa de inflación para conocer cuánto valdría ese dinero ajustado a la inflación. Así puedes planificar mejor tus finanzas y comprender el impacto real de la inflación en tus ahorros y gastos.</p>
+    </article>
+
+<script>
+    document.getElementById('pageSelector').addEventListener('change', function() {
+        window.location.href = this.value;
+    });
+
+    function calcularInflacion() {
+        var valorInicial = parseFloat(document.getElementById('valorInicial').value);
+        var inflacionPorcentaje = parseFloat(document.getElementById('inflacionPorcentaje').value);
+        var resultado = document.getElementById('resultado');
+        if (isNaN(valorInicial) || isNaN(inflacionPorcentaje) || valorInicial < 0 || inflacionPorcentaje < 0) {
+            resultado.textContent = 'Por favor, ingresa valores válidos positivos.';
+            return;
+        }
+        var valorAjustado = valorInicial * (1 + inflacionPorcentaje / 100);
+        resultado.textContent = 'Valor ajustado por inflación: ' + valorAjustado.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
